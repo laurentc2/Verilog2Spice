@@ -8,7 +8,7 @@ usage example assuming :
  * a reference memory block spice netlist : memory.cdl
  * the target spice netlist output : final.sp  
 
-python verilog2spice.py -spice stdcells.cdl -spice memory.cdl -verilog final.v -output final.sp -pos_pwr VDD -neg_pwr VSS -delimiter
+_**python verilog2spice.py -spice stdcells.cdl -spice memory.cdl -verilog final.v -output final.sp -pos_pwr VDD -neg_pwr VSS -delimiter**_
 
  * under Linux, the command python can be avoided or replaced by python3
  * if pos_pwr and neg_pwr are not specified, they are by default VDD and VSS

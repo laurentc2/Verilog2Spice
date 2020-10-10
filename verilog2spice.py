@@ -93,6 +93,7 @@ for spi_file in spi_files :
 
 if nb_subckt == 0 :
 	print ('\nERROR : NO subckt found in the Spice netlist !\n')
+	quit()
 else :
 	print ('... end of SPICE netlist parsing : ' + str(nb_subckt) + ' cells found in the SPICE netist.\n')
 

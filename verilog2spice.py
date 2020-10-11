@@ -92,8 +92,7 @@ for spi_file in spi_files :
 	spifl.close()
 
 if nb_subckt == 0 :
-	print ('\nERROR : NO subckt found in the Spice netlist !\n')
-	quit()
+	sys.exit('\nERROR : NO subckt found in the Spice netlist !\n')
 else :
 	print ('... end of SPICE netlist parsing : ' + str(nb_subckt) + ' cells found in the SPICE netist.\n')
 
@@ -134,7 +133,7 @@ for line1 in verfl:
 		subckt_on = False
 		if del_on :  # change the busses delimiter
 			subckt = subckt.replace('[','<').replace(']','>')
-		outfl.write(subckt.upper() + '\n\n')
+		outfl.write('.GLOBAL ' + pos_pwr + ' ' + neg_pwr + '\n\n' + subckt.upper() + '\n\n')
 
 	if (not subckt_on) and (not inst_on) and re.search('\(\s*\.',line1) :
 		words = line1.upper().rstrip('\r\n').strip().split()

@@ -1,6 +1,6 @@
 # Verilog to Spice in Python
 
-Simple strutured VERILOG netlist to SPICE netlist translator
+Simple structured VERILOG netlist to SPICE netlist translator
 
 usage example assuming : 
  * the verilog netlist to be converted called : final.v  

@@ -135,7 +135,7 @@ for line1 in verfl:
 			subckt = subckt.replace('[','<').replace(']','>')
 		outfl.write('.GLOBAL ' + pos_pwr + ' ' + neg_pwr + '\n\n' + subckt.upper() + '\n\n')
 
-	if (not subckt_on) and (not inst_on) and re.search('\(\s*\.',line1) :
+	if (not subckt_on) and (not inst_on) and re.search('\(\s*\.',line1) and words[0].find('MODULE') != 0 and line1.strip()[0:2].find('//') != 0 :
 		words = line1.upper().rstrip('\r\n').strip().split()
 		if words[1][0] == 'X' :  # avoid double XX at the beginning of the instance name
 			instance = words[1]
@@ -159,7 +159,7 @@ for line1 in verfl:
 			pins.append(word[:word.find('(')])
 			nodes.append(word[word.find('(')+1:word.find(')')])
 		i = 0
-		while subckt != cells[i][0] and i < len(cells) : # search for the cell on the list of cells stored with the SPICE
+		while i < len(cells) and subckt != cells[i][0] : # search for the cell on the list of cells stored with the SPICE
 			i += 1
 		if i == len(cells) :
 			print ('ERROR : subckt ' + subckt + ' not found in the Spice netlist !')
@@ -173,7 +173,7 @@ for line1 in verfl:
 					instance = instance + ' ' + neg_pwr
 				else :
 					j = 0
-					while cells[i][pin] != pins[j] and j < len(pins) : # if the verilog pin name = spice pin name
+					while j < len(pins) and cells[i][pin] != pins[j] : # if the verilog pin name = spice pin name
 						j += 1
 					if j == len(nodes) :
 						print ( 'ERROR : pin ' + cells[i][pin] + ' of the Spice netlist not found for the cell ' + inst_name + ' of the Verilog netlist !')
